@@ -8,6 +8,4 @@ describe("FizzBuzz", () => {
     expect(fizz_buzz("aaa", "b")).toBe(false);
   });
 
-   
-
 });
