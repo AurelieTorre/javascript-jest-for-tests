@@ -7,7 +7,10 @@
     "watch": "webpack --watch",
     "build": "webpack build",
     "start": "webpack serve --open",
-    "test": "jest --config jest.config.js"
+    "test": "jest"
+  },
+  "jest": {
+    "testEnvironment": "jsdom"
   },
   "author": "",
   "license": "ISC",
