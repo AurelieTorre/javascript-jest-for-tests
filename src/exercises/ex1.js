@@ -1,5 +1,3 @@
-// script.js
-
 const addButton = document.getElementById("add-class-button");
 const element = document.getElementById("element");
 
@@ -10,5 +8,3 @@ function addClassToElement() {
 
 
 addButton.addEventListener("click", addClassToElement);
-
-module.exports = addClassToElement;

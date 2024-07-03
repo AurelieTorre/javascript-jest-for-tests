@@ -1,20 +1,20 @@
- /**
- * @jest-environment jsdom
- */
-
-require('./ex2');
+const fs = require('fs');
+const path = require('path');
 
 describe('Button click changes message text', () => {
   let clickMeButton, message;
 
   beforeEach(() => {
-    // Charger le contenu HTML dans le DOM
-    document.body.innerHTML = `
-      <button id="click-me-button">Click Me</button>
-      <p id="message">Hello, World!</p>
-    `;
+    // Charger le contenu de index.html
+    const html = fs.readFileSync(path.resolve(__dirname, '../../index.html'), 'utf8');
 
-    // Récupérer les éléments du DOM
+    // Simuler le DOM dans chaque test
+    document.body.innerHTML = html;
+
+    // Récupérer le js après avoir chargé le DOM
+    require('./ex2');
+
+    // Récupérer les éléments après avoir injecté le HTML
     clickMeButton = document.getElementById('click-me-button');
     message = document.getElementById('message');
   });
