@@ -20,6 +20,11 @@ describe('Email Validation', () => {
     emailInput = document.getElementById('email-input');
     validationMessage = document.getElementById('validation-message');
   });
+  
+  // afterEach(() => {
+  //   emailForm.reset(); // réinitialiser le formulaire
+  //   validationMessage.textContent ="";
+  // });
 
   test('shows an invalid email message when an invalid email is submitted', () => {
     // Définir une valeur invalide pour l'input
@@ -31,5 +36,16 @@ describe('Email Validation', () => {
     // Vérifier le message de validation
     expect(validationMessage.textContent).toBe("L'adresse e-mail n'est pas valide.");
   });
+
+  // test('shows a valid email message when an valid email is submitted', () => {
+  //   // Définir une valeur valide pour l'input
+  //   emailInput.value = 'abc.def@ghi';
+
+  //   // Soumettre le formulaire
+  //   emailForm.dispatchEvent(new Event('submit'));
+
+  //   // Vérifier le message de validation
+  //   expect(validationMessage.textContent).toBe("L'adresse e-mail est valide.");
+  // });
 
 });

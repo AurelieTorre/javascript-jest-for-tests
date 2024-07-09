@@ -78,15 +78,13 @@ This will create a dist directory with optimized and minified assets.
 - Verify that clicking the button triggers the event handler and updates the message as expected.
 
 ## Exercise 3
-
-### Instructions
+### Instructions:
 
 - In the index.html file, there is a form with the ID email-form, an email input field with the ID email-input, and a validation message paragraph with the ID validation-message.
 
 - In the script.js file, write the validateEmail function to validate the email entered by the user. You can use regular expressions or simple checks for this exercise.
 
 - When the form is submitted (by clicking the "Submit" button), prevent the default form submission behavior, and call the validateEmail function to display a validation message based on whether the email is valid or not.
-
 
 ## Exercise 4
 ### Instructions:
@@ -98,7 +96,7 @@ This will create a dist directory with optimized and minified assets.
 - In the script.js file, import the fetchData function and use it to fetch data when the page loads (DOMContentLoaded). Display the fetched data on the page.
 
 ## Exercise 5
-### Instructions
+### Instructions:
 
 - In the index.html file, there is a <div> with the ID hover-area and a <p> with the ID interaction-result. The <div> represents an area that users can hover over.
 
@@ -111,6 +109,7 @@ This will create a dist directory with optimized and minified assets.
 - Create a function that removes duplicate values from an array and write a test case for it
 - Create a function that checks if an array includes a specific value and write a test case for it 
 - Create a function that sorts an array of numbers in ascending order and write a test case for it
+
 ### License
 - This project is licensed under the MIT License.
 
