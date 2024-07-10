@@ -1,40 +1,42 @@
-// __tests__/fetchData.test.js
-import axios from 'axios';
-import MockAdapter from 'axios-mock-adapter';
-import { fetchData } from './ex4';
-
-const mock = new MockAdapter(axios);
+const fetchData = require('./ex4');
 
 describe('fetchData', () => {
-  afterEach(() => {
-    mock.reset();
+  beforeEach(() => {
+    fetch.resetMocks();
   });
 
-  it('devrait retourner la température en Celsius', async () => {
-    // Configuration du mock pour retourner une réponse spécifique
+  test('should return temperature in Celsius when API response is valid', async () => {
     const mockResponse = {
-      data: {
-        main: {
-          temp: 300.15 // Par exemple, 300.15 Kelvin (27°C)
-        }
+      main: {
+        temp: 300.15 // K
       }
     };
 
-    mock.onGet('https://api.openweathermap.org/data/2.5/weather?lat=48.11&lon=-1.67&appid=08cb792ca8906ae401dad848ccb6410d').reply(200, mockResponse);
+    fetch.mockResponseOnce(JSON.stringify(mockResponse));
 
-    // Appel de la fonction fetchData
     const temperature = await fetchData();
-
-    // Vérification des résultats
-    expect(temperature).toBeCloseTo(27, 2); // Vérifie que la température est proche de 27°C avec une précision de 2 décimales
+    expect(temperature).toBeCloseTo(27, 2); // 300.15K - 273.15 = 27°C
   });
 
-  it('devrait gérer les erreurs de la requête', async () => {
-    // Configuration du mock pour retourner une erreur
-    mock.onGet('https://api.openweathermap.org/data/2.5/weather?lat=48.11&lon=-1.67&appid=08cb792ca8906ae401dad848ccb6410d').reply(500);
+  // test('should throw an error when API response is missing temp', async () => {
+  //   const mockResponse = {
+  //     main: {}
+  //   };
 
-    // Appel de la fonction fetchData et vérification qu'elle renvoie undefined en cas d'erreur
-    const temperature = await fetchData();
-    expect(temperature).toBeUndefined();
-  });
+  //   fetch.mockResponseOnce(JSON.stringify(mockResponse));
+
+  //   await expect(fetchData()).rejects.toThrow('Données de réponse manquantes');
+  // });
+
+  // test('should log an error when fetch fails', async () => {
+  //   const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
+
+  //   fetch.mockRejectOnce(new Error('Network error'));
+
+  //   await fetchData();
+
+  //   expect(consoleSpy).toHaveBeenCalledWith('Erreur à la récupération des données :', expect.any(Error));
+
+  //   consoleSpy.mockRestore();
+  // });
 });

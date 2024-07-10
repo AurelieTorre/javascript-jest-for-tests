@@ -1,31 +1,27 @@
-import axios from 'axios';
+const api_key = '08cb792ca8906ae401dad848ccb6410d';
+const latitude = 48.11;
+const longitude = -1.67;
+const api_url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${api_key}`;
 
 const res = document.getElementById('paragraph');
 const eraser = document.getElementById('remove-paragraph-button');
 
-let longitude = -1.67; // Rennes longitude
-let latitude = 48.11; // Rennes latitude
-const api_key = '08cb792ca8906ae401dad848ccb6410d';
-const api_url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${api_key}`;
-
-export const fetchData = async () => {
+async function fetchData() {
   try {
-    const response = await axios.get(api_url);
-    // Vérifie si la réponse contient les données attendues
-    if (response.data && response.data.main && response.data.main.temp !== undefined) {
-      // Conversion de la température de Kelvin à Celsius
-      const temperatureCelsius = response.data.main.temp - 273.15;
+    const response = await fetch(api_url);
+    const jsonData = await response.json();
+    if (jsonData && jsonData.main && jsonData.main.temp !== undefined && jsonData.main.temp !== null) {
+      const temperatureCelsius = jsonData.main.temp - 273.15;
       return temperatureCelsius;
     } else {
       throw new Error('Données de réponse manquantes');
     }
   } catch (error) {
-    console.error('Erreur lors de la récupération des données :', error);
+    console.error('Erreur à la récupération des données :', error);
   }
-};
+}
 
-
-function displayData() {
+const displayData = () => {
   fetchData()
     .then((temperature) => {
       if (temperature !== undefined) {
@@ -46,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
   eraser.addEventListener('click', removeParagraph);
 });
 
-
+module.exports = fetchData;
 
 /* EXAMPLE OF AN API REQUEST */
 
