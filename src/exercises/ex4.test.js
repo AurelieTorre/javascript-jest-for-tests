@@ -6,37 +6,18 @@ describe('fetchData', () => {
   });
 
   test('should return temperature in Celsius when API response is valid', async () => {
+    // création d'un mock
     const mockResponse = {
       main: {
         temp: 300.15 // K
       }
     };
 
+    // comme mockResponse est un objet, il faut le transformer en string
     fetch.mockResponseOnce(JSON.stringify(mockResponse));
 
     const temperature = await fetchData();
-    expect(temperature).toBeCloseTo(27, 2); // 300.15K - 273.15 = 27°C
+    expect(temperature).toBeCloseTo(27, 2); // 300.15K - 273.15 = 27°C, et le 2e chiffre est la précision
   });
 
-  // test('should throw an error when API response is missing temp', async () => {
-  //   const mockResponse = {
-  //     main: {}
-  //   };
-
-  //   fetch.mockResponseOnce(JSON.stringify(mockResponse));
-
-  //   await expect(fetchData()).rejects.toThrow('Données de réponse manquantes');
-  // });
-
-  // test('should log an error when fetch fails', async () => {
-  //   const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
-
-  //   fetch.mockRejectOnce(new Error('Network error'));
-
-  //   await fetchData();
-
-  //   expect(consoleSpy).toHaveBeenCalledWith('Erreur à la récupération des données :', expect.any(Error));
-
-  //   consoleSpy.mockRestore();
-  // });
 });

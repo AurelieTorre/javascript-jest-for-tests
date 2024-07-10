@@ -20,7 +20,7 @@ describe('Email Validation', () => {
     emailInput = document.getElementById('email-input');
     validationMessage = document.getElementById('validation-message');
   });
-  
+
   // afterEach(() => {
   //   emailForm.reset(); // réinitialiser le formulaire
   //   validationMessage.textContent ="";

@@ -6,11 +6,16 @@ const api_url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}
 const res = document.getElementById('paragraph');
 const eraser = document.getElementById('remove-paragraph-button');
 
+// la fonction doit être asynchrone pour attendre la réponse de l'API
 async function fetchData() {
   try {
+    // on récupère la réponse
     const response = await fetch(api_url);
+    // on récupère les données de la réponse
     const jsonData = await response.json();
+    // on vérifie que les données sont utilisables
     if (jsonData && jsonData.main && jsonData.main.temp !== undefined && jsonData.main.temp !== null) {
+      // on convertit en °C car elles sont données en K
       const temperatureCelsius = jsonData.main.temp - 273.15;
       return temperatureCelsius;
     } else {
@@ -21,8 +26,10 @@ async function fetchData() {
   }
 }
 
+// fonction pour afficher les données
 const displayData = () => {
   fetchData()
+    // on attend qu'elles arrivent
     .then((temperature) => {
       if (temperature !== undefined) {
         res.textContent = `La température actuelle à Rennes est de ${temperature.toFixed(2)} °C.`;

@@ -8,11 +8,11 @@ const setupHoverListener = () => {
     interactionResult.textContent = 'Vous survolez la zone !';
   });
 
-  // Ajouter un écouteur d'événement pour quand la souris quitte la zone
+  // Ajout d'un écouteur d'événement pour quand la souris quitte la zone
   hoverArea.addEventListener('mouseout', () => {
     interactionResult.textContent = 'Vous avez quitté la zone de survol.';
   });
 };
 
+// Il faut encore appeler la fonction car au-dessus elle a juste été définie
 setupHoverListener();
-
